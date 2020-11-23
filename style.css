@@ -1,0 +1,260 @@
+/*Parameters may be used through out all of our css classes*/
+
+:root {
+    font-size: 16px;
+    /*Defining the google font we picked in the html*/
+    font-family: 'Ubuntu', sans-serif;
+    /*Setting up some primary and secondary colors with variables so it can be used anywhere*/
+    --text-primary: #b6b6b6;
+    --text-secondary: #eeccee;
+    /*Setting up some background variables*/
+    --bg-primary: #23232e;
+    --bg-secondary: #141418;
+}
+
+body {
+    color: black;
+    background-color: white;
+    /*Removing margin and padding here*/
+    margin: 0;
+    padding: 0;
+}
+
+/*Putting some margin so we can fit our navbar*/
+
+div {
+    /*Rem is relative size unit to the font size on root so basically it would be 5rem*16px=80px*/
+    margin-left: 5rem;
+    /*Keeps everything proportional to the root so you dont need to edit anything by hand(rem)*/
+    padding: 1rem;
+}
+
+/*We will edit default scroll bar on the web page now*/
+
+body::-webkit-scrollbar {
+    width: 0.5rem;
+}
+
+body::-webkit-scrollbar-thumb {
+    background: #df49a6;
+}
+
+body::-webkit-scrollbar-track {
+    background: #23232e;
+}
+
+/*Nav bar elements here!*/
+
+.navbar {
+    width: 5rem;
+    /*This is relative to the size of the view-port It will always fill 100% and react
+    if user changes the window size*/
+    height: 100vh;
+    /*Stays in the same place no matter where does user scroll on the page*/
+    position: fixed;
+    /*Using our css variables in root for the color*/
+    background-color: var(--bg-primary);
+    /*Adding some transition to create the animation lookalike*/
+    transition: width 200ms ease;
+}
+
+/*We will be using flexbox now to float the items in the nav bar*/
+
+/*The list in the HTML which is unordered will be our flex container*/
+
+.navbar-nav {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    /*By default this makes a row*/
+    display: flex;
+    flex-direction: column;
+    /*We need to change it from horizontally to the middle*/
+    align-items: center;
+    height: 100%;
+}
+
+.nav-item {
+    width: 100%;
+}
+
+/*We will move last item in the list to the bottom*/
+
+.nav-item:last-child {
+    /*Makes the margin as big as possible and pushes it to the bottom*/
+    margin-top: auto;
+}
+
+/*Fixing each link in the nav bar*/
+
+.nav-link {
+    display: flex;
+    align-items: center;
+    height: 5rem;
+    color: var(--text-primary);
+    /*We will show text only when the user hovers over it*/
+    text-decoration: none;
+    filter: grayscale(100%) opacity(0.7);
+    transition: var(--transition-speed);
+}
+
+/*We will remove the filters when hovered on the item so it looks like animation*/
+
+.nav-link:hover {
+    filter: grayscale(0%) opacity(1);
+    background: var(--bg-secondary);
+    color: var(--text-secondary);
+}
+
+.link-text {
+    display: none;
+    margin-left: 1rem;
+}
+
+.nav-link svg {
+    min-width: 2rem;
+    margin: 0 1.5rem;
+}
+
+/*We will add some animation to the navbar when it is hovered*/
+
+.navbar:hover {
+    /*Just expanding the navbar when hovered*/
+    width: 16rem;
+}
+
+/*We will display text when hovered*/
+
+.navbar:hover .link-text {
+    display: block;
+}
+
+/*We will change colors to the graphich so when hovered they look like it lights up*/
+
+.fa-primary {
+    color: #ff7eee;
+}
+
+.fa-secondary {
+    color: #df49a6;
+}
+
+.fa-primary, .fa-secondary {
+    transition: var(--transition-speed);
+}
+
+/*Setting up for mobile small screen*/
+
+@media only screen and (max-width: 667px) {
+    .navbar {
+        bottom: 0;
+        width: 100vw;
+        height: 5rem;
+    }
+    .navbar-nav {
+        flex-direction: row;
+    }
+    .nav-link {
+        justify-content: center;
+    }
+    div {
+        margin: 0;
+    }
+
+    .navbar:hover .link-text {
+        display: none;
+    }
+    .navbar:hover {
+        /*Just expanding the navbar when hovered*/
+        width: none;
+    }
+    body, html {
+        max-width: 100vw;
+        margin: 0 auto;
+        overflow-x: hidden;
+    }
+    .wrapper {
+        width: 100%;
+    }
+    .img-banner {
+        display: none !important;
+    }
+    .img-info {
+        width: 50%;
+    }
+    .img-info h2 {
+        padding: 30px 30px 20px;
+        font-family: 'Ubuntu', sans-serif;
+        font-size: 50px;
+        color: #111;
+        line-height: 44px;
+    }
+    .img-info p {
+        padding: 0px 30px 20px;
+        font-family: 'Ubuntu', sans-serif;
+        font-size: 16px;
+        color: #111;
+        line-height: 24px;
+    }
+    .img-cover {
+        width: 50% !important;
+       padding-bottom: 15% !important;
+        
+    }
+}
+
+/*Tablet*/
+
+@media only screen and (max-width: 1024px) {
+    .img-banner {
+        display: block;
+        width: 100%;
+        padding-bottom: 30px;
+    }
+    .wrapper {
+        width: 600px;
+        margin: 0 auto;
+    }
+    .img-info h2 {
+        padding: 20px 0px 0px;
+    }
+    .img-info p {
+        padding: 20px 0px 0px;
+    }
+    .img-cover {
+        width: 80%;
+        padding-top: 30px;
+        
+       
+    }
+}
+
+/*Large screen fixing the content of the page*/
+
+@media only screen and (min-width: 1024px) {
+    .img-banner {
+        display: block;
+        width: 100%;
+
+        padding-bottom: 30px;
+    }
+    .wrapper {
+        width: 80%;
+    }
+    .img-info {
+        width: 50%;
+        float: right;
+    }
+    .img-info h2 {
+        padding: 20px 0px 0px 30px;
+    }
+    .img-info p {
+        padding: 20px 0px 0px 30px;
+    }
+    .img-cover {
+        padding-top: 0px;
+        
+        width: 45%;
+        float: left;
+    }
+}
